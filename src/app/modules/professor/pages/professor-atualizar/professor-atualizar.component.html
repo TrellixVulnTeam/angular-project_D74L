@@ -1,0 +1,53 @@
+<div class="card-header">
+    <h1>Cadastro de Professor</h1>
+
+    <div class="form-group">
+        <div class="   col-md-6 offset-md-3">
+            <label></label>
+            <input type="text" [(ngModel)]="professor.nome" name="nome" class="form-control "
+                placeholder=" Nome do professor" required="">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-6 offset-md-3">
+            <label>Data de nascimento</label>
+            <input type="date" name="rg" 
+            [ngModel]="professor.dataNascimento | date: 'yyyy-MM-dd'" 
+            (ngModelChange)="professor.dataNascimento = $event"
+            class="form-control"
+                placeholder="Data de nascimento" required="">
+        </div>
+    </div>
+    <div class="form-group">
+        <select class="form-select col-md-6 offset-md-3" [(ngModel)]="professor.sexo" aria-label="Selecione o sexo">
+            <option selected>Selecione o sexo</option>
+            <option value="M">Masculino</option>
+            <option value="F">Feminino</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <select class="form-select col-md-6 offset-md-3" [(ngModel)]="professor.titulacao" aria-label="Selecione a titulação">
+            <option selected>Selecione o Titulação</option>
+            <option value="G">Graduação</option>
+            <option value="E">Especialização</option>
+            <option value="M">Mestrado</option>
+            <option value="D">Doutorado</option>
+            <option value="P">PhD</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-6 offset-md-3">
+            <button (click)="salvarController()" class="btn btn-primary"> Cadastrar</button>
+        </div>
+    </div>
+
+    <div class="card-footer text-muted">
+        @flpquerino
+
+        {{professor.dataNascimento | date:'dd/MM/yyyy'}}
+    </div>
+
+</div>

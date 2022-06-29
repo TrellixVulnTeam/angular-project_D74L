@@ -1,0 +1,72 @@
+<nav class = "navbar navbar-light gb -light">
+    <div class = "container-fliud">
+        <input class ="form-control col-md-15 me-3"
+              type="search"
+              *ngIf="filtroKey==='nome'"
+              [(ngModel)]="filtroValue"
+              placeholder="Digite o termo a ser pesquisado"              
+              aria-label="Search"
+              >
+        <select class="form-select col-md-5" [(ngModel)]="filtroValue" *ngIf="filtroKey === 'sexo'">
+                <option value="selecionar" selected="selecionar"> Selecione um Campo</option>
+                <option value="M">Masculino</option>
+                <option value="F">Feminino</option>                
+        </select>
+        <select class="form-select col-md-12" [(ngModel)]="filtroValue" *ngIf="filtroKey === 'titulacao'">
+            <option value="selecionar" selected="selecionar"> Selecione um Campo</option>            
+            <option value="G">Graduação</option>
+            <option value="E">Especialização</option>
+            <option value="M">Mestrado</option>
+            <option value="D">Doutorado</option>
+            <option value="P">PhD</option>             
+    </select>
+        <select class="form-select col-md-12" [(ngModel)]="filtroKey">
+            <option value="selecionar"> Selecione um Campo</option>
+            <option value="nome">Nome</option>
+            <option value="sexo">Sexo</option>
+            <option value="titulacao">Titulação</option>
+        </select>
+        <button
+            class="btn btn-outline-success"
+            (click)="buscaComFiltro()">
+            Buscar
+        </button>
+    </div>
+</nav>
+<div class="col-md-12"  *ngIf="contador > 0">
+<table class="table col-md-12">
+    <thead>
+        <tr>
+            <th class="col-md-2">Codigo</th>
+            <th class="col-md-8">Nome</th>
+            <th class="col-md-2">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let professor of paginaLista.conteudo">
+            <td>{{professor.id}}</td>
+            <td>{{professor.nome}}</td>
+            <td>
+                <a class="alert-secondary" (click)="atualizarProfessor(professor)">
+                    <i class="bi bi-pencil-square"></i>
+                </a>
+                <a class="ml-2 alert-secondary" (click)="excluirProfessor(professor)">
+                    <i class="bi bi-trash-fill"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div>
+    <button type="button" (click)="buscaComFiltro(false)" disable= "paginaLista.paginaSelecionada ===0"class="btn btn-info mr-2">Anterior</button>
+    <button type="button" (click)="buscaComFiltro(true)" disable= "paginaLista.proximaPagina== false "class="btn btn-info mr-2">Próximo</button>
+    <label>Pagina {{paginaLista.paginaSelecionada+1}} de {{contador}} </label>
+
+</div>
+</div>
+<div *ngIf="contador == 0">
+    Sem registro
+</div>
+<div class="card-footer text-muted">
+    @flpquerino
+</div>
