@@ -58,10 +58,8 @@
     </tbody>
 </table>
 <div>
-    <button type="button" (click)="buscaComFiltro(false)" disable= "paginaLista.paginaSelecionada ===0"class="btn btn-info mr-2">Anterior</button>
-    <button type="button" (click)="buscaComFiltro(true)" disable= "paginaLista.proximaPagina== false "class="btn btn-info mr-2">Próximo</button>
-    <label>Pagina {{paginaLista.paginaSelecionada+1}} de {{contador}} </label>
-
+    <button *ngIf="paginaLista.paginaSelecionada > 0" type="button" (click)="buscaComFiltro(false)" class="btn btn-info mr-2">Anterior</button>
+    <button *ngIf="paginaLista.proximaPagina" type="button" (click)="buscaComFiltro(true)"  class="btn btn-info mr-2">Próximo</button>
 </div>
 </div>
 <div *ngIf="contador == 0">

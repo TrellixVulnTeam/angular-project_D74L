@@ -24,7 +24,6 @@ export class ProfessorListComponent implements OnInit {
 
   ngOnInit(): void {
     this.resetarPagina();
-    // this.listarControler();
   }
 
   listarControler(filter?: Filter) {
@@ -66,21 +65,20 @@ export class ProfessorListComponent implements OnInit {
   buscaComFiltro(avanca?: boolean) {
     let filtroController = {} as Filter;
 
-    if (avanca) {
-      filtroController = {
-        key: this.filtroKey,
-        value: this.filtroValue,
-        pageSize: this.filtroTamanhoPagina,
-        wantedPage: this.paginaLista.paginaSelecionada + 1
-      } as Filter
-    } else {
-      filtroController = {
-        key: this.filtroKey,
-        value: this.filtroValue,
-        pageSize: this.filtroTamanhoPagina,
-        wantedPage: this.paginaLista.paginaSelecionada - 1
-      } as Filter
+    if (avanca === true) {
+      this.filtroPaginaDesejada += 1
+    } 
+
+    if (avanca === false) {
+      this.filtroPaginaDesejada -= 1
     }
+
+    filtroController = {
+      key: this.filtroKey,
+      value: this.filtroValue,
+      pageSize: this.filtroTamanhoPagina,
+      wantedPage: this.filtroPaginaDesejada
+    } as Filter
 
     this.listarControler(filtroController);
   }
